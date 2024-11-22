@@ -2,6 +2,6 @@
 {
     public class CardInfo
     {
-        public string Pan { get; set; }
+        public string? Pan { get; set; }
     }
 }

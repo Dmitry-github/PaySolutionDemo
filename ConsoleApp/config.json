@@ -3,6 +3,7 @@
     "Host": "https://acstopay.online",
     "TestCardPath": "/api/testassignments/pan",
     "EchoPath": "/api/echo",
+    "UseTimer":  "True", 
 
     "cardNumbers": [
       "4111111111111111",

@@ -17,10 +17,10 @@
         
         private readonly HttpClient _httpClient;
         private readonly AsyncRetryPolicy<HttpResponseMessage> _retryPolicy;
-        private readonly string _host;
-        private readonly string _requestUri;
+        private readonly string? _host;
+        private readonly string? _requestUri;
 
-        public NetworkRequestHandler(string host, string reqestUri)
+        public NetworkRequestHandler(string? host, string? reqestUri)
         {
             _host = host;
             _requestUri = reqestUri;

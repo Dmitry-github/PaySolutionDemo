@@ -1,39 +1,16 @@
 ﻿namespace ConsoleApp
 {
-    //using System;
-    using System.Net.Http.Headers;
+    using Models;
     using System.Security.Cryptography;
     using System.Text;
-    using ConsoleApp.Models;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
 
     public class JwsHelper
     {
-        //private const string Host = "https://acstopay.online";
         //TODO: to secrets
         private const string KeyId = "47e8fde35b164e888a57b6ff27ec020f";
         private const string SharedKey = "ac/1LUdrbivclAeP67iDKX2gPTTNmP0DQdF+0LBcPE/3NWwUqm62u5g6u+GE8uev5w/VMowYXN8ZM+gWPdOuzg==";
-
-        //public static async Task<HttpResponseMessage> SendJwsMessage(string text)
-        //{
-        //    using HttpClient client = new HttpClient();
-        //    client.BaseAddress = new Uri(ConsoleConfig.Host);
-        //    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        //    client.DefaultRequestHeaders.Add("kid", KeyId);
-
-        //    CardInfoRequest cardInfo = new()
-        //    {
-        //        CardInfo = new CardInfo { Pan = text }
-        //    };
-
-        //    var jsonPayload = JsonConvert.SerializeObject(cardInfo);
-        //    var jwsMessage = CreateJwsMessage(jsonPayload);
-
-        //    var content = new StringContent(jwsMessage, Encoding.UTF8, "application/json");
-
-        //    return await client.PostAsync(ConsoleConfig.TestCardPath, content);
-        //}
 
         public static StringContent GetJwsStringContent(string text)
         {
@@ -78,7 +55,7 @@
 
         private static string SignPayload(string signingInput)
         {
-            using HMACSHA256 hmac = new HMACSHA256(Convert.FromBase64String(SharedKey));  //new(
+            using HMACSHA256 hmac = new HMACSHA256(Convert.FromBase64String(SharedKey));
             byte[] hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(signingInput));
             return Base64UrlEncode(hash);
         }
@@ -97,20 +74,6 @@
             var payloadJsonText = Base64UrlDecode(parts[1]);
             return JsonConvert.DeserializeObject<CardInfoResponse>(payloadJsonText);
         }
-
-        //public static T DecodeJwsResponse<T>(string response) where T: class
-        //{
-        //    var parts = response.Split('.');
-        //    if (parts.Length == 3)
-        //    {
-        //        var payloadJsonText = Base64UrlDecode(parts[1]);
-        //        var payload = JsonConvert.DeserializeObject<CardInfoResponse>(payloadJsonText);
-        //        return payload == null ? default(T) : payload;
-        //    }
-
-        //    var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(string.Join(' ', parts));
-        //    return errorResponse == null ? default(T) : errorResponse; ;
-        //}
 
         private static string Base64UrlEncode(byte[] input)
         {

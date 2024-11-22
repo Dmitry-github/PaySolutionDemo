@@ -3,18 +3,8 @@
     using System.IO;
     using Microsoft.Extensions.Configuration;
 
-    //public class AppSettings
-    //{
-    //    public string Host { get; set; }
-    //    public string TestCardPath { get; set; }
-    //    public string EchoPath { get; set; }
-    //    public List<string> CardNumbers { get; set; }
-    //}
-
     public static class ConsoleConfig
     {
-        //private static AppSettings appSettings; 
-
         private static IConfiguration Configuration
         {
             get
@@ -36,6 +26,7 @@
         public static string? Host => Configuration["AppSettings:Host"];
         public static string? TestCardPath => Configuration["AppSettings:TestCardPath"];
         public static string? EchoPath => Configuration["AppSettings:EchoPath"];
+        public static bool UseTimer => Convert.ToBoolean(Configuration["AppSettings:UseTimer"]);
     }
 };
 

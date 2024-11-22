@@ -2,6 +2,6 @@
 {
     public class CardInfoRequest
     {
-        public CardInfo CardInfo { get; set; }
+        public CardInfo? CardInfo { get; set; }
     }
 }

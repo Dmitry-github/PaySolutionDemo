@@ -14,20 +14,10 @@
 
     public class Application: IApplication
     {
-        //private readonly INetworkRequestHandler? _handler;
-        //private readonly IServiceCollection _services;
         private readonly ICardCheckerLogic _checkerLogic; 
 
-        //public Application(INetworkRequestHandler? handler)
-        ////public Application(IServiceCollection services)
-        //{
-        //    //_handler = new NetworkRequestHandler(ConsoleConfig.Host, ConsoleConfig.TestCardPath);
-        //    //_services = services;
-        //    _handler = handler;
-        //}
         public Application(ICardCheckerLogic cardCheckerLogic)
         {
-            //_checkerLogic = new CardCheckerLogic();
             _checkerLogic = cardCheckerLogic;
         }
 
@@ -65,11 +55,13 @@
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e); // TODO: Log
             }
 
             stopwatch.Stop();
-            Console.WriteLine($"Time from start - {stopwatch.ElapsedMilliseconds} ms");
+
+            if(ConsoleConfig.UseTimer)
+                Console.WriteLine($"Time from start - {stopwatch.ElapsedMilliseconds} ms");
 
             //await EchoCheckAsync();
         }
