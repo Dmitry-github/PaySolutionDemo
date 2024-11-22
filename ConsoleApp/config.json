@@ -1,0 +1,14 @@
+{
+  "AppSettings": {
+    "Host": "https://acstopay.online",
+    "TestCardPath": "/api/testassignments/pan",
+    "EchoPath": "/api/echo",
+
+    "cardNumbers": [
+      "4111111111111111",
+      "4627100101654724",
+      "4486441729154030",
+      "4024007123874108"
+    ]
+  }
+}
